@@ -164,3 +164,31 @@ brfss_smart2010 %>%
 ``` r
 ##In 2002, states that were observed at 7 or more locations included: AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, WA, WI, WV, and WY. 
 ```
+
+``` r
+brfss_smart2010 %>%
+  filter(Year == "2010") %>%
+  group_by(Year, Locationabbr) %>%
+  summarize(n_obs = n()) %>%
+  filter(n_obs > 6)
+```
+
+    ## # A tibble: 49 x 3
+    ## # Groups:   Year [1]
+    ##     Year Locationabbr n_obs
+    ##    <int> <chr>        <int>
+    ##  1  2010 AL             204
+    ##  2  2010 AR             202
+    ##  3  2010 AZ             204
+    ##  4  2010 CA             815
+    ##  5  2010 CO             476
+    ##  6  2010 CT             339
+    ##  7  2010 DC              68
+    ##  8  2010 DE             204
+    ##  9  2010 FL            2785
+    ## 10  2010 GA             270
+    ## # … with 39 more rows
+
+``` r
+##In 2002, states that were observed at 7 or more locations included: AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, MT, NC, ND, NE. NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD. TN, TX, UT, VT, WA, WI, WV, and WY. 
+```
