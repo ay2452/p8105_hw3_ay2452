@@ -38,3 +38,14 @@ instacart %>%
 
 ##The plot shows the different aisles and the number of items ordered from each aisle in descending order from the top. Fresh vegetables and fresh fruits are very close and greatly outnumber the other aisles. 
 ```
+
+```{r Problem 1.3}
+instacart %>%
+  filter(aisle == c("baking_ingredients","dog_food_care","packaged_vegetable_fruits")) %>%
+  group_by(aisle, product_name) %>%
+  summarize( 
+    n_obs = n()) %>%
+  filter(min_rank(desc(n))<4) %>%
+  knitr::kable(col.names = c("Aisle", "Product", "Number"))
+##
+```
