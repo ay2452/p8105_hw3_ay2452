@@ -165,3 +165,11 @@ accel %>%
   summarize(total_activity = sum(Activity))
 ```
 
+```{r Problem 3.3}
+accel %>%
+  mutate(Total_hour = Minute %% 60) %>%
+  group_by(day, Total_hour) %>%
+  summarize(Total_activity = sum(Activity)) %>%
+  ggplot(aes(x = Total_hour, y = Total_activity)) + geom_line(aes(color = day))
+```
+
