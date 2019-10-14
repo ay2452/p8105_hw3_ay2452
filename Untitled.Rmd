@@ -70,3 +70,16 @@ instacart %>%
 
 ##The 2x7 table shows the mean hour of day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week. Coffee Ice Cream seems to be ordered most between 1-3 pm and Pink Lady Apples mostly between 1-4 pm (although Wednesday is a bit different with a mean of 8 am).
 ```
+
+```{r Problem 2.1}
+data("brfss_smart2010")
+
+brfss_smart2010 %>%
+  filter(Response == c("Poor", "Fair", "Good", "Very Good", "Excellent")) %>%
+  mutate(Response = ordered(Response, c("Poor", "Fair", "Good", "Very Good", "Excellent"))) %>%
+  janitor::clean_names()
+
+##Cleaning the brfss_smart2010 dataset by focusing on the "Overall Health" topic and including responses from "Excellent" to "Poor". Responses were also ordered from "Poor" to "Excellent" and variable names are formatted appropiately.
+```
+
+

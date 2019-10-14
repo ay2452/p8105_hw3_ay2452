@@ -99,3 +99,40 @@ instacart %>%
 ``` r
 ##The 2x7 table shows the mean hour of day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week. Coffee Ice Cream seems to be ordered most between 1-3 pm and Pink Lady Apples mostly between 1-4 pm (although Wednesday is a bit different with a mean of 8 am).
 ```
+
+``` r
+data("brfss_smart2010")
+
+brfss_smart2010 %>%
+  filter(Response == c("Poor", "Fair", "Good", "Very Good", "Excellent")) %>%
+  mutate(Response = ordered(Response, c("Poor", "Fair", "Good", "Very Good", "Excellent"))) %>%
+  janitor::clean_names()
+```
+
+    ## Warning in Response == c("Poor", "Fair", "Good", "Very Good", "Excellent"):
+    ## longer object length is not a multiple of shorter object length
+
+    ## # A tibble: 1,693 x 23
+    ##     year locationabbr locationdesc class topic question response
+    ##    <int> <chr>        <chr>        <chr> <chr> <chr>    <ord>   
+    ##  1  2010 AL           AL - Jeffer… Heal… Over… How is … Good    
+    ##  2  2010 AL           AL - Mobile… Heal… Over… How is … Fair    
+    ##  3  2010 AL           AL - Tuscal… Heal… Over… How is … Poor    
+    ##  4  2010 AZ           AZ - Marico… Heal… Over… How is … Excelle…
+    ##  5  2010 AZ           AZ - Pima C… Heal… Over… How is … Fair    
+    ##  6  2010 AZ           AZ - Pinal … Heal… Over… How is … Good    
+    ##  7  2010 AR           AR - Benton… Heal… Over… How is … Fair    
+    ##  8  2010 AR           AR - Pulask… Heal… Over… How is … Poor    
+    ##  9  2010 AR           AR - Washin… Heal… Over… How is … Excelle…
+    ## 10  2010 CA           CA - Alamed… Heal… Over… How is … Good    
+    ## # … with 1,683 more rows, and 16 more variables: sample_size <int>,
+    ## #   data_value <dbl>, confidence_limit_low <dbl>,
+    ## #   confidence_limit_high <dbl>, display_order <int>,
+    ## #   data_value_unit <chr>, data_value_type <chr>,
+    ## #   data_value_footnote_symbol <chr>, data_value_footnote <chr>,
+    ## #   data_source <chr>, class_id <chr>, topic_id <chr>, location_id <chr>,
+    ## #   question_id <chr>, respid <chr>, geo_location <chr>
+
+``` r
+##Cleaning the brfss_smart2010 dataset by focusing on the "Overall Health" topic and including responses from "Excellent" to "Poor". Responses were also ordered from "Poor" to "Excellent" and variable names are formatted appropiately.
+```
