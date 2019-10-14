@@ -69,5 +69,33 @@ instacart %>%
 | :---- | :------ | -----: |
 
 ``` r
-##
+##Created table looking at three most popular items in each of the specified aisls.  
+```
+
+``` r
+instacart %>%
+  filter(product_name %in% c("Pink Lady Apple", "Coffee Ice Cream")) %>%
+  group_by(product_name, order_dow) %>%
+  summarize(
+    mean_hr_day = mean(order_hour_of_day)) %>%
+  pivot_wider(
+    names_from = "order_dow", 
+    values_from = "mean_hr_day") %>%
+  knitr::kable(col.names = c("Product", 
+                             "Sunday", 
+                             "Monday", 
+                             "Tuesday", 
+                             "Wednesday", 
+                             "Thursday", 
+                             "Friday", 
+                             "Saturday"))
+```
+
+| Product          |   Sunday |   Monday |  Tuesday | Wednesday | Thursday |   Friday | Saturday |
+| :--------------- | -------: | -------: | -------: | --------: | -------: | -------: | -------: |
+| Coffee Ice Cream | 13.77419 | 14.31579 | 15.38095 |  15.31818 | 15.21739 | 12.26316 | 13.83333 |
+| Pink Lady Apple  | 14.40000 | 14.20000 | 13.20000 |   8.00000 | 11.00000 | 16.00000 | 13.00000 |
+
+``` r
+##The 2x7 table shows the mean hour of day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week. Coffee Ice Cream seems to be ordered most between 1-3 pm and Pink Lady Apples mostly between 1-4 pm (although Wednesday is a bit different with a mean of 8 am).
 ```

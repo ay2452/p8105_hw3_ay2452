@@ -47,5 +47,26 @@ instacart %>%
     n_obs = n()) %>%
   filter(min_rank(desc(n))<4) %>%
   knitr::kable(col.names = c("Aisle", "Product", "Number"))
-##
+
+##Created table looking at three most popular items in each of the specified aisls.  
+```
+```{r Problem 1.4}
+instacart %>%
+  filter(product_name %in% c("Pink Lady Apple", "Coffee Ice Cream")) %>%
+  group_by(product_name, order_dow) %>%
+  summarize(
+    mean_hr_day = mean(order_hour_of_day)) %>%
+  pivot_wider(
+    names_from = "order_dow", 
+    values_from = "mean_hr_day") %>%
+  knitr::kable(col.names = c("Product", 
+                             "Sunday", 
+                             "Monday", 
+                             "Tuesday", 
+                             "Wednesday", 
+                             "Thursday", 
+                             "Friday", 
+                             "Saturday"))
+
+##The 2x7 table shows the mean hour of day at which Pink Lady Apples and Coffee Ice Cream are ordered on each day of the week. Coffee Ice Cream seems to be ordered most between 1-3 pm and Pink Lady Apples mostly between 1-4 pm (although Wednesday is a bit different with a mean of 8 am).
 ```
