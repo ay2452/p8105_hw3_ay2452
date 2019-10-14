@@ -136,4 +136,26 @@ brfss_smart2010 %>%
 ##Created plot showing responses for NY state. It seems that most of the responses are centered around "Excellent" compared to Poor. 
 ```
 
+```{r Problem 3.1}
+accel = 
+  read_csv("./data/accel_data.csv") %>%
+  janitor::clean_names() %>%
+  mutate(
+    week_type = (if_else(day %in% c("Saturday", "Sunday"), "Weekend", "Weekday")) %>%
+  pivot_longer(
+    activity_1:activity_1440, 
+    names_to = "Minute", 
+    names_prefix = "activity_", 
+    values_to = "Activity") %>%
+  mutate(
+      week_type = as.integer(week_type), 
+      day = as.character(day), 
+      day_id = as.integer(day_id), 
+      week = as.character(week), 
+      Activity = as.numeric(Activity),
+      Minute = as.numeric(Minute))
+  ) %>% view
+
+##Cleaned dataset and condensed variables; there are now 6 variables.
+```
 
