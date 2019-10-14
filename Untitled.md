@@ -136,3 +136,31 @@ brfss_smart2010 %>%
 ``` r
 ##Cleaning the brfss_smart2010 dataset by focusing on the "Overall Health" topic and including responses from "Excellent" to "Poor". Responses were also ordered from "Poor" to "Excellent" and variable names are formatted appropiately.
 ```
+
+``` r
+brfss_smart2010 %>%
+  filter(Year == "2002") %>%
+  group_by(Year, Locationabbr) %>%
+  summarize(n_obs = n()) %>%
+  filter(n_obs > 6)
+```
+
+    ## # A tibble: 49 x 3
+    ## # Groups:   Year [1]
+    ##     Year Locationabbr n_obs
+    ##    <int> <chr>        <int>
+    ##  1  2002 AK              49
+    ##  2  2002 AL              49
+    ##  3  2002 AR              49
+    ##  4  2002 AZ              98
+    ##  5  2002 CA              49
+    ##  6  2002 CO             196
+    ##  7  2002 CT             343
+    ##  8  2002 DC              49
+    ##  9  2002 DE             147
+    ## 10  2002 FL             343
+    ## # … with 39 more rows
+
+``` r
+##In 2002, states that were observed at 7 or more locations included: AK, AL, AR, AZ, CA, CO, CT, DC, DE, FL, GA, HI, IA, ID, IL, IN, KS, KY, LA, MA, MD, ME, MI, MN, MO, MS, NC, ND, NE, NH, NJ, NM, NV, NY, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, WA, WI, WV, and WY. 
+```
