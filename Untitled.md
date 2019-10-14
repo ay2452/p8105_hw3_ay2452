@@ -216,3 +216,29 @@ brfss_1 %>%
 ``` r
 ##Created a new dataset, "brfss_1" and plotted a spaghetti graph with each state having its own color. 3 rows were removed due to missing values. 
 ```
+
+``` r
+brfss_smart2010 %>%
+  filter(Year == c("2006", "2010"), Locationabbr == "NY") %>%
+  filter(Response == c("Poor", "Fair", "Good", "Very Good", "Excellent")) %>%
+  mutate(Response = ordered(Response, c("Poor", "Fair", "Good", "Very Good", "Excellent"))) %>%
+  ggplot (aes(x = Response, y = Data_value)) + 
+    geom_violin(aes(color = "Response")) + 
+    stat_summary(fun.y = median, geom = "point", color = "blue") + labs (
+      title = "NY Responses", 
+      x = "Response", 
+      y = "Number"
+    )
+```
+
+    ## Warning in Year == c("2006", "2010"): longer object length is not a
+    ## multiple of shorter object length
+
+    ## Warning in Response == c("Poor", "Fair", "Good", "Very Good", "Excellent"):
+    ## longer object length is not a multiple of shorter object length
+
+![](Untitled_files/figure-gfm/Problem%202.4-1.png)<!-- -->
+
+``` r
+##Created plot showing responses for NY state. It seems that most of the responses are centered around "Excellent" compared to Poor. 
+```
