@@ -159,3 +159,9 @@ accel =
 ##Cleaned dataset and condensed variables; there are now 6 variables.
 ```
 
+```{r Problem 3.2}
+accel %>%
+  group_by(week, day) %>%
+  summarize(total_activity = sum(Activity))
+```
+
